@@ -48,7 +48,7 @@ function solution(name) {
 		if (count > 0) repeat_array.push(count)
 
 		if (repeat_array.length === 0) return name.length - 1
-		if (repeat_array.length === 1) return name.length - 2
+		if (repeat_array.length === 1) return 1
 		// 0번 인덱스가 마지막 인덱스보다 크거나, repeat_array가 1이면 무조건 역방향
 		// 역방향이면 0번 인덱스 제외
 		if (repeat_array[0] > repeat_array[repeat_array.length - 1]) {
