@@ -1,5 +1,6 @@
 function solution(n, array) {
   let answer = 0;
+  let i = 0;
 
   // 루프를 돌린다.
   while (i < array.length) {
