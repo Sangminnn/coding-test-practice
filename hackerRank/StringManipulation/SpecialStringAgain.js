@@ -1,3 +1,5 @@
+// 알고보니 special string은 주어진 값중 가운데 값만 기준으로 잡고
+// 나머지는 다 같은 값인것을 일컫는 말이였음.
 function solution(n, str) {
   let answer = 0;
 
@@ -7,13 +9,18 @@ function solution(n, str) {
       return;
     }
 
-    let limit = str.length % 2 === 0 ? str.length / 2 - 1 : Math.floor(str.length / 2);
+    let regex = new RegExp(str[0], 'g');
+    //
+    if (str.length % 2 === 1) {
+      let word_to_array = str.split('');
+      word_to_array.splice(Math.floor(str.length / 2), 1);
 
-    for (let k = 0; k <= limit; k++) {
-      // 대칭값이 같지않으면 break
-      if (str[k] !== str[str.length - k - 1]) break;
-      // 대칭값이 계속해서 같았고, 마지막 대칭값도 통과한 경우 answer++
-      if (k === limit) answer++;
+      str = word_to_array.join('');
+    }
+
+    if (!str.replace(regex, '')) {
+      answer++;
+      return;
     }
   }
 
