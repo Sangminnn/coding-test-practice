@@ -41,3 +41,28 @@ function solution(s1, s2) {
 
   return count;
 }
+
+// 서치해서 알아낸 정석적인 풀이
+// DP와 LCS(Longest Common String)를 활용하여 구하는 패턴이라고 함
+// 2차 배열을 활용하여 동일 문자열이 나올때마다 1씩 추가해준다.
+
+function commonChild(s1, s2) {
+  let arr2d = []; // 1
+
+  for (let i = 0; i <= s1.length; i++) {
+    // 2
+    arr2d[i] = new Array(); // 3
+
+    for (let j = 0; j <= s2.length; j++) {
+      if (i === 0 || j === 0) arr2d[i][j] = 0;
+      // 4
+      else if (s1[i - 1] === s2[j - 1]) {
+        arr2d[i][j] = arr2d[i - 1][j - 1] + 1; // 5
+      } else {
+        arr2d[i][j] = Math.max(arr2d[i - 1][j], arr2d[i][j - 1]); // 6
+      }
+    }
+  }
+
+  return arr2d[s1.length][s2.length]; // 7
+}
